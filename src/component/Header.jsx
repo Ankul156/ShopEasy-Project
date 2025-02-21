@@ -24,7 +24,7 @@ export default function Header() {
     <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 left-0 w-full z-50">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
         <Link to="/" className="flex items-center space-x-3">
-          <img src="public/logo.png" className="w-[150px]" alt="Logo" />
+          <img src="/logo.png" className="w-[150px]" alt="Logo" />
         </Link>
 
         {/* Toggle Button */}

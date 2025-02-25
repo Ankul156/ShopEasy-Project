@@ -66,7 +66,7 @@ export default function Header() {
           className={`${isMenuOpen ? "block" : "hidden"} w-full md:block md:w-auto`}
           id="navbar-default"
         >
-          <ul className="flex flex-col md:flex-row md:space-x-8 p-4 md:p-0 mt-4 md:mt-0 bg-gray-50 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 border rounded-lg md:border-0">
+          <ul className="flex flex-col md:flex-row md:space-x-8 p-4 md:p-0 mt-4 md:mt-0 bg-gray-800 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 border rounded-lg md:border-0">
             <Link to="/" onClick={handleLinkClick}>
               <li className={`block cursor-pointer py-2 px-4 rounded-md text-white hover:bg-blue-500  hover:text-white ${location.pathname === "/" ? "bg-blue-500 text-white" : ""}`}>
                 Home

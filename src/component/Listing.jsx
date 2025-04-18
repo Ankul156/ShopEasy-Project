@@ -52,6 +52,8 @@ export default function Listing() {
     setCurrentPage(pageNumber);
   };
 
+  console.log(products)
+
   const pagination = Array.from({ length: page }, (_, index) => (
     <li
       key={index}
@@ -130,8 +132,7 @@ export default function Listing() {
               : products.map((product) => (
                 <div
                   key={product.id}
-                  className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-96"
-                >
+                  className="bg-white relative rounded-lg shadow-md overflow-hidden flex flex-col">
                   <Link to={`/details/${product.id}`}>
                     <img
                       alt={product.imageAlt}
@@ -139,23 +140,52 @@ export default function Listing() {
                       className="w-full h-48 object-cover rounded-md"
                     />
                   </Link>
-                  <div className="p-4 flex flex-col flex-grow">
-                    <h3 className="text-lg font-semibold text-gray-800 truncate">
-                      <Link to={`/details/${product.id}`}>{product.title}</Link>
-                    </h3>
-                    <p className="text-sm text-gray-500 mt-1">₹{product.price}</p>
-                    <div className="mt-auto">
-                      <button
-                        onClick={() => productid(product)}
-                        type="button"
-                        className="w-full py-2 px-4 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700 cursor-pointer"
-                      >
-                        Add to cart
-                      </button>
+                  <div className=" p-4 flex flex-col justify-between h-full bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                    {/* Discount Badge */}
+                    <div className="absolute top-4 left-2 bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded-md shadow-sm">
+                      {product.discountPercentage}% OFF
                     </div>
+
+                    <div className="flex flex-col gap-2 mb-4 mt-6">
+                      <h3 className="text-lg font-semibold text-gray-900 line-clamp-1">
+                        <Link to={`/details/${product.id}`} className="hover:underline">
+                          {product.title}
+                        </Link>
+                      </h3>
+                      <p className="text-base text-blue-700 font-bold">₹{product.price}</p>
+                      <p className="text-sm text-gray-600">
+                        Category: <span className="text-gray-800 font-medium">{product.category}</span>
+                      </p>
+                      <div className="text-sm text-gray-600 flex items-center gap-1">
+                        Rating:
+                        <div className="flex items-center">
+                          {Array.from({ length: 5 }, (_, i) => (
+                            <span key={i} className={i < Math.round(product.rating) ? "text-yellow-400" : "text-gray-300"}>
+                              ★
+                            </span>
+                          ))}
+                          <span className="ml-1 text-xs text-gray-500">({product.rating})</span>
+                        </div>
+                      </div>
+                      <p className="text-sm text-gray-600">
+                        Stock:
+                        <span
+                          className={`ml-1 font-medium ${product.availabilityStatus === 'In Stock' ? 'text-green-600' : 'text-red-500'
+                            }`}
+                        >
+                          {product.availabilityStatus}
+                        </span>
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => productid(product)}
+                      type="button"
+                      className="mt-auto w-full py-2 px-4 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+                    >
+                      Add to cart
+                    </button>
                   </div>
                 </div>
-
               ))}
           </div>
         </div>
